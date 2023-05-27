@@ -18,16 +18,13 @@ export const resolveProjectName = (projectName?: string) => {
   return projectName;
 };
 
-export const showProcessMessage = async (
-  answer: IConfig,
-  fetchTemplate: () => Promise<void>
-) => {
-  const { projectName, description } = answer;
+export const showSuccessSlogan = async (answer: IConfig) => {
+  const { projectName } = answer;
   const rainbowTitle = chalkAnimation.rainbow(
-    `\n\tLet's create our project: ${projectName}!\n\n\t${description}\n`
+    `\n\n\tEnjoy this project: ${projectName}!\n\n\tLet's do it. 🚀🚀🚀\n\n`
   );
   rainbowTitle.start();
-  await fetchTemplate();
+  await (() => new Promise((resolve) => setTimeout(resolve, 1000 * 2)));
   rainbowTitle.stop();
 };
 
@@ -43,8 +40,3 @@ export function createCustomFiglet(text: string): Promise<string> {
     });
   });
 }
-
-export const setCustomHelpText = () => gradient.pastel("Juice Scaffold");
-// figlet("Juice Scaffold", (_, data) => {
-//   console.log(`${gradient.pastel(data)}\n`);
-// });

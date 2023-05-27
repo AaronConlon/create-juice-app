@@ -3,7 +3,7 @@
 import {
   createCustomFiglet,
   resolveProjectName,
-  showProcessMessage,
+  showSuccessSlogan,
 } from "./utils";
 
 import { generateConfig } from "./generateConfig";
@@ -21,9 +21,9 @@ import { program } from "commander";
       const _projectName = resolveProjectName(projectName);
       // 如果未指定项目名称，则让用户输入项目名
       const answers = await generateConfig(_projectName, cmdObj?.template);
-      await showProcessMessage(answers, async () => {
-        await generateProject(answers);
-      });
+      // showProcessMessage(answers, () => generateProject(answers));
+      await generateProject(answers);
+      showSuccessSlogan(answers);
     })
     .addHelpText("before", customHelpText);
   program.parse(process.argv);

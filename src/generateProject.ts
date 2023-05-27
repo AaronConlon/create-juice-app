@@ -4,6 +4,7 @@ import download from "download-git-repo";
 import { exec } from "child_process";
 import fs from "fs/promises";
 import { globalConfig } from "./config";
+import path from "path";
 import { showErrorMessage } from "./tips";
 
 const downloadTemplate = async (templateName: string, projectName: string) => {
@@ -56,45 +57,63 @@ const replaceConfigToTemplate = async (config: IConfig) => {
   await fs.writeFile(envPath, newEnv, { encoding: "utf-8" });
 };
 
+async function removeGitGithub(dirPath: string) {
+  const gitPath = path.join(dirPath, ".git");
+  const githubPath = path.join(dirPath, ".github");
+  try {
+    await Promise.allSettled([
+      fs.rm(gitPath, { recursive: true, force: true }),
+      fs.rm(githubPath, { recursive: true, force: true }),
+    ]);
+  } catch (err) {}
+}
+
 const installDependencies = async (config: IConfig, onSuccess: () => void) => {
   const { projectName, packageManager } = config;
-  const spinner = createSpinner("安装依赖中...").start();
-  const installCommand = {
+  const spinner = createSpinner("安装依赖...").start();
+  const installCommandMap = {
     npm: "npm install",
     yarn: "yarn",
     pnpm: "pnpm install",
   };
-  await fs.rm(`./${projectName}/.git`, { recursive: true });
-  await fs.rm(`./${projectName}/.github`, { recursive: true });
-  await fs.rm(`./${projectName}/.gitignore`, { recursive: true });
-  // install dependencies
-  // exec install command
-  exec(
-    installCommand[packageManager],
-    { cwd: `./${projectName}` },
-    (err: any) => {
+  await removeGitGithub(`./${projectName}`);
+  // check package manager command exists
+  const installCommand = installCommandMap[packageManager];
+  exec(`${packageManager} --version`, (err) => {
+    if (err) {
+      // 命令不存在，则安装
+      exec(`npm install -g ${packageManager}`, (err, _, __) => {
+        showErrorMessage('安装依赖失败，请检查是否安装了"npm"或"yarn"或"pnpm"');
+        showErrorMessage(err);
+        showErrorMessage("std out:", _);
+        showErrorMessage("std error:", __);
+      });
+    }
+    exec(installCommand, { cwd: `./${projectName}` }, (err: any) => {
       if (err) {
         showErrorMessage("安装依赖失败，请检查网络是否正常");
         process.exit(1);
       }
       spinner.success({ text: "安装依赖成功" });
       onSuccess();
-    }
-  );
+    });
+  });
 };
 
-export const generateProject = async (config: IConfig) => {
+export const generateProject = async (config: IConfig): Promise<any> => {
   const { template, projectName } = config;
-  let spinner = createSpinner("拉取文件中...").start();
+  let spinner = createSpinner("拉取文件...").start();
   // 下载模板
   await downloadTemplate(template, projectName);
   spinner.success({ text: "拉取文件成功" });
-  spinner.update({ text: "初始化项目配置..." }).start();
+
   // 更新配置和安装依赖
+  spinner = createSpinner("初始化项目配置...").start();
   await replaceConfigToTemplate(config);
+  spinner.success({ text: "项目配置成功" });
+
   return new Promise((resolve) => {
     installDependencies(config, () => {
-      spinner.success({ text: "初始化项目配置成功" });
       resolve(true);
     });
   });
