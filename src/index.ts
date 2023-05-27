@@ -4,7 +4,6 @@ import {
   createCustomFiglet,
   resolveProjectName,
   showProcessMessage,
-  showSuccessMessage,
 } from "./utils";
 
 import { generateConfig } from "./generateConfig";
@@ -22,19 +21,9 @@ import { program } from "commander";
       const _projectName = resolveProjectName(projectName);
       // 如果未指定项目名称，则让用户输入项目名
       const answers = await generateConfig(_projectName, cmdObj?.template);
-      console.log("answers: ", answers);
-
-      await showProcessMessage(
-        answers.projectName ?? projectName,
-        answers.description,
-        async () => {
-          console.log("loading...");
-          await generateProject(answers);
-        }
-      );
-      // 然后，根据模板名称，下载模板
-      console.log(`cmdObject: ${JSON.stringify(cmdObj)}`);
-      await showSuccessMessage(projectName);
+      await showProcessMessage(answers, async () => {
+        await generateProject(answers);
+      });
     })
     .addHelpText("before", customHelpText);
   program.parse(process.argv);

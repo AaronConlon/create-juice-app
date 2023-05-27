@@ -10,6 +10,7 @@ export interface IConfig {
   port: string;
   backendApi: string;
   projectName: string;
+  packageManager: "npm" | "yarn" | "pnpm";
 }
 
 export const generateConfig = async (
@@ -40,6 +41,12 @@ export const generateConfig = async (
       name: "backendApi",
       message: "请输入后端接口地址",
       default: "http://localhost:3000",
+    },
+    {
+      type: "list",
+      name: "packageManager",
+      message: "请选择包管理工具",
+      choices: ["npm", "yarn", "pnpm"],
     },
   ] as QuestionCollection[];
   if (!projectName) {

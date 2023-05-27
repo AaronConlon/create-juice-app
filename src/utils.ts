@@ -1,3 +1,4 @@
+import { IConfig } from "./generateConfig.js";
 import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
 import fs from "fs";
@@ -17,17 +18,11 @@ export const resolveProjectName = (projectName?: string) => {
   return projectName;
 };
 
-const sleep = (ms: number = 2000) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
-
-// 欢迎词
-export const showSuccessMessage = async (projectName: string) => {};
-
 export const showProcessMessage = async (
-  projectName: string,
-  description: string,
+  answer: IConfig,
   fetchTemplate: () => Promise<void>
 ) => {
+  const { projectName, description } = answer;
   const rainbowTitle = chalkAnimation.rainbow(
     `\n\tLet's create our project: ${projectName}!\n\n\t${description}\n`
   );
