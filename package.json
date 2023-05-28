@@ -36,6 +36,7 @@
     "@types/gradient-string": "^1.1.2",
     "@types/inquirer": "^9.0.3",
     "@types/node": "^20.2.5",
+    "@types/node-fetch": "^2.6.4",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   },
@@ -47,6 +48,7 @@
     "figlet": "^1.6.0",
     "gradient-string": "^2.0.2",
     "inquirer": "^9.2.6",
-    "nanospinner": "^1.1.0"
+    "nanospinner": "^1.1.0",
+    "node-fetch": "^3.3.1"
   }
 }

@@ -1,10 +1,12 @@
 import { IConfig } from "./generateConfig.js";
 import chalkAnimation from "chalk-animation";
+import fetch from "node-fetch";
 import figlet from "figlet";
 import fs from "fs";
+import { globalConfig } from "./config.js";
 import gradient from "gradient-string";
 import path from "path";
-import { showErrorMessage } from "./tips.js";
+import { showErrorMessage } from "./tips";
 
 export const covertPath = (projectName: string, fileName: string) => {
   const currentDirName = path.basename(process.cwd());
@@ -58,3 +60,18 @@ export function createCustomFiglet(text: string): Promise<string> {
     });
   });
 }
+
+// 获取 github 仓库的分支模板选项
+export const getBranches = async () => {
+  const { githubName: owner, repo } = globalConfig;
+  const options = {
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+      "User-Agent": "Github API Client",
+    },
+  };
+  const url = `https://api.github.com/repos/${owner}/${repo}/branches`;
+  const res = await fetch(url, options);
+  const data = (await res.json()) as Array<{ name: string }>;
+  return data.filter(({ name }) => name !== "main").map(({ name }) => name);
+};

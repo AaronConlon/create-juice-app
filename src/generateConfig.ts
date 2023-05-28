@@ -1,9 +1,9 @@
 import inquirer, { QuestionCollection } from "inquirer";
 
+import { getBranches } from "./utils";
 import path from "path";
 import { showErrorMessage } from "./tips";
 
-const TEMPLATE_LIST = ["juice", "react", "vue"];
 export interface IConfig {
   template: string;
   description: string;
@@ -18,6 +18,7 @@ export const generateConfig = async (
   projectName?: string,
   templateName?: string
 ) => {
+  const templateList = await getBranches();
   const prompts = [
     {
       type: "input",
@@ -84,7 +85,7 @@ export const generateConfig = async (
 
   if (templateName) {
     //  检查项目名称是否存在
-    if (!TEMPLATE_LIST.includes(templateName)) {
+    if (!templateList.includes(templateName)) {
       showErrorMessage(`模板 ${templateName} 不存在`);
       process.exit(1);
     }
@@ -95,7 +96,7 @@ export const generateConfig = async (
         type: "list",
         name: "template",
         message: "请选择模板",
-        choices: TEMPLATE_LIST,
+        choices: templateList,
       }
     );
   }
