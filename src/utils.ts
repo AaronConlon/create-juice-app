@@ -3,10 +3,28 @@ import chalkAnimation from "chalk-animation";
 import figlet from "figlet";
 import fs from "fs";
 import gradient from "gradient-string";
+import path from "path";
 import { showErrorMessage } from "./tips.js";
+
+export const covertPath = (projectName: string, fileName: string) => {
+  const currentDirName = path.basename(process.cwd());
+  if (projectName === currentDirName) {
+    return fileName;
+  }
+  return `./${projectName}/${fileName}`;
+};
+
+export const getExecPath = (projectName: string) => {
+  const currentDirName = path.basename(process.cwd());
+  if (projectName === currentDirName) {
+    return ".";
+  }
+  return `./${projectName}`;
+};
 
 export const resolveProjectName = (projectName?: string) => {
   if (!projectName) return;
+  if (projectName === ".") return path.basename(process.cwd());
   // check if the file or directory is already exist
   const isExistSameNameFileOrDir = fs.existsSync(projectName);
   if (isExistSameNameFileOrDir) {

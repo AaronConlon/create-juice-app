@@ -1,5 +1,6 @@
 import inquirer, { QuestionCollection } from "inquirer";
 
+import path from "path";
 import { showErrorMessage } from "./tips";
 
 const TEMPLATE_LIST = ["juice", "react", "vue"];
@@ -23,6 +24,15 @@ export const generateConfig = async (
       name: "description",
       message: "请输入项目描述",
       default: "A funny project ❤️ ",
+      validate: (input) => {
+        if (!input) {
+          return "项目描述不能为空";
+        }
+        if (input.length > 1024 * 10) {
+          return "项目描述不能超过10KB";
+        }
+        return true;
+      },
     },
     {
       type: "input",
@@ -35,6 +45,15 @@ export const generateConfig = async (
       name: "port",
       message: "请输入开发模式端口号",
       default: 9000,
+      validate: (input) => {
+        if (isNaN(Number(input))) {
+          return "端口号必须为数字";
+        }
+        if (Number(input) < 0 || Number(input) > 65535) {
+          return "端口号必须在0-65535之间";
+        }
+        return true;
+      },
     },
     {
       type: "input",
@@ -83,7 +102,10 @@ export const generateConfig = async (
   const result = await inquirer.prompt<IConfig>(prompts);
   return {
     ...result,
-    projectName: projectName ?? result.projectName,
+    projectName:
+      projectName ?? result.projectName === "."
+        ? path.basename(process.cwd())
+        : result.projectName,
     template: templateName ?? result.template,
   };
 };

@@ -1,10 +1,11 @@
+import { covertPath, getExecPath } from "./utils";
+
 import { IConfig } from "./generateConfig";
 import { createSpinner } from "nanospinner";
 import download from "download-git-repo";
 import { exec } from "child_process";
 import fs from "fs/promises";
 import { globalConfig } from "./config";
-import path from "path";
 import { showErrorMessage } from "./tips";
 
 const downloadTemplate = async (templateName: string, projectName: string) => {
@@ -12,10 +13,11 @@ const downloadTemplate = async (templateName: string, projectName: string) => {
   return new Promise((resolve) => {
     download(
       `direct:https://github.com/${githubName}/${cliName}#${templateName}`,
-      projectName,
+      getExecPath(projectName),
       { clone: true },
       (err: string) => {
         if (err) {
+          console.log(err);
           showErrorMessage("下载模板失败，请检查网络是否正常");
           process.exit(1);
         }
@@ -26,9 +28,9 @@ const downloadTemplate = async (templateName: string, projectName: string) => {
 };
 
 const replaceConfigToTemplate = async (config: IConfig) => {
-  const { template, projectName } = config;
-  const packageJsonPath = `./${projectName}/package.json`;
-  const readmePath = `./${projectName}/README.md`;
+  const { projectName } = config;
+  const packageJsonPath = covertPath(projectName, "package.json");
+  const readmePath = covertPath(projectName, "README.md");
   // 读取 package.json
   const rawPackageJson = await fs.readFile(packageJsonPath, "utf-8");
   const packageJson = JSON.parse(rawPackageJson) as Record<string, any>;
@@ -49,7 +51,7 @@ const replaceConfigToTemplate = async (config: IConfig) => {
   // 写入 README.md
   await fs.writeFile(readmePath, newReadme, { encoding: "utf-8" });
   // 更新 .env 文件
-  const envPath = `./${projectName}/.env`;
+  const envPath = covertPath(projectName, ".env");
   const rawEnv = await fs.readFile(envPath, "utf-8");
   const newEnv = rawEnv
     .replace(/{{backendApi}}/g, config.backendApi)
@@ -58,8 +60,8 @@ const replaceConfigToTemplate = async (config: IConfig) => {
 };
 
 async function removeGitGithub(dirPath: string) {
-  const gitPath = path.join(dirPath, ".git");
-  const githubPath = path.join(dirPath, ".github");
+  const gitPath = covertPath(dirPath, ".git");
+  const githubPath = covertPath(dirPath, ".github");
   try {
     await Promise.allSettled([
       fs.rm(gitPath, { recursive: true, force: true }),
@@ -89,7 +91,7 @@ const installDependencies = async (config: IConfig, onSuccess: () => void) => {
         showErrorMessage("std error:", __);
       });
     }
-    exec(installCommand, { cwd: `./${projectName}` }, (err: any) => {
+    exec(installCommand, { cwd: getExecPath(projectName) }, (err: any) => {
       if (err) {
         showErrorMessage("安装依赖失败，请检查网络是否正常");
         process.exit(1);
