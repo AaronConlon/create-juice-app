@@ -2,7 +2,6 @@
 
 import {
   createCustomFiglet,
-  getBranches,
   resolveProjectName,
   showSuccessSlogan,
 } from "./utils";
@@ -18,7 +17,6 @@ import { program } from "commander";
     .option("-t, --template <template name>", "模板名称")
     .argument("[project name]", "项目名称")
     .action(async (projectName, cmdObj: { template?: string }) => {
-      await getBranches();
       // 首先，根据项目名称，创建项目文件夹
       const _projectName = resolveProjectName(projectName);
       // 如果未指定项目名称，则让用户输入项目名

@@ -10,15 +10,26 @@ import { showErrorMessage } from "./tips";
 
 export const covertPath = (projectName: string, fileName: string) => {
   const currentDirName = path.basename(process.cwd());
-  if (projectName === currentDirName) {
+  // @ts-ignore
+  if (projectName === currentDirName && globalThis?._sameDir_ !== true) {
     return fileName;
   }
   return `./${projectName}/${fileName}`;
 };
 
-export const getExecPath = (projectName: string) => {
+export const getExecPackageInstallPath = (projectName: string) => {
   const currentDirName = path.basename(process.cwd());
-  if (projectName === currentDirName) {
+  // @ts-ignore
+  if (projectName === currentDirName && globalThis?._sameDir_ !== true) {
+    return ".";
+  }
+  return `./${projectName}`;
+};
+
+export const getDownloadTemplateDir = (projectName: string) => {
+  const currentDirName = path.basename(process.cwd());
+  // @ts-ignore
+  if (projectName === currentDirName && globalThis?._sameDir_ !== true) {
     return ".";
   }
   return `./${projectName}`;
@@ -26,7 +37,11 @@ export const getExecPath = (projectName: string) => {
 
 export const resolveProjectName = (projectName?: string) => {
   if (!projectName) return;
-  if (projectName === ".") return path.basename(process.cwd());
+  if (projectName === ".") {
+    // @ts-ignore
+    globalThis._sameDir_ = false;
+    return path.basename(process.cwd());
+  }
   // check if the file or directory is already exist
   const isExistSameNameFileOrDir = fs.existsSync(projectName);
   if (isExistSameNameFileOrDir) {

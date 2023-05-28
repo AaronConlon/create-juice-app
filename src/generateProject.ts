@@ -1,4 +1,8 @@
-import { covertPath, getExecPath } from "./utils";
+import {
+  covertPath,
+  getDownloadTemplateDir,
+  getExecPackageInstallPath,
+} from "./utils";
 
 import { IConfig } from "./generateConfig";
 import { createSpinner } from "nanospinner";
@@ -9,21 +13,21 @@ import { globalConfig } from "./config";
 import { showErrorMessage } from "./tips";
 
 const downloadTemplate = async (templateName: string, projectName: string) => {
-  const { githubName, cliName } = globalConfig;
+  const { githubName, repo } = globalConfig;
+
   return new Promise((resolve) => {
-    download(
-      `direct:https://github.com/${githubName}/${cliName}#${templateName}`,
-      getExecPath(projectName),
-      { clone: true },
-      (err: string) => {
-        if (err) {
-          console.log(err);
-          showErrorMessage("下载模板失败，请检查网络是否正常");
-          process.exit(1);
-        }
-        resolve(true);
+    const url = `direct:https://github.com/${githubName}/${repo}#${templateName}`;
+    const targetDir = getDownloadTemplateDir(projectName);
+    // @ts-ignore
+    console.log("targetDir", targetDir, globalThis?._sameDir_);
+    download(url, targetDir, { clone: true }, (err: string) => {
+      if (err) {
+        console.log(err);
+        showErrorMessage("下载模板失败，请检查网络是否正常");
+        process.exit(1);
       }
-    );
+      resolve(true);
+    });
   });
 };
 
@@ -91,19 +95,25 @@ const installDependencies = async (config: IConfig, onSuccess: () => void) => {
         showErrorMessage("std error:", __);
       });
     }
-    exec(installCommand, { cwd: getExecPath(projectName) }, (err: any) => {
-      if (err) {
-        showErrorMessage("安装依赖失败，请检查网络是否正常");
-        process.exit(1);
+    exec(
+      installCommand,
+      { cwd: getExecPackageInstallPath(projectName) },
+      (err: any) => {
+        if (err) {
+          console.log(err);
+          showErrorMessage("安装依赖失败，请检查网络是否正常");
+          process.exit(1);
+        }
+        spinner.success({ text: "安装依赖成功" });
+        onSuccess();
       }
-      spinner.success({ text: "安装依赖成功" });
-      onSuccess();
-    });
+    );
   });
 };
 
 export const generateProject = async (config: IConfig): Promise<any> => {
   const { template, projectName } = config;
+  console.log("projectName", projectName);
   let spinner = createSpinner("拉取文件...").start();
   // 下载模板
   await downloadTemplate(template, projectName);

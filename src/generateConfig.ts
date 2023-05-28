@@ -101,6 +101,17 @@ export const generateConfig = async (
     );
   }
   const result = await inquirer.prompt<IConfig>(prompts);
+  // 如果输入的项目名跟当前目录名相同，则设置全局变量_sameDir_为true
+  console.log(path.basename(process.cwd()), result.projectName);
+  const currentPath = path.basename(process.cwd());
+  if (
+    result.projectName === currentPath ||
+    // @ts-ignore
+    (projectName === currentPath && globalThis._sameDir_ !== false)
+  ) {
+    // @ts-ignore
+    globalThis._sameDir_ = true;
+  }
   return {
     ...result,
     projectName:
