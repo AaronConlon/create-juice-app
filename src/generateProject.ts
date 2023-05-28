@@ -61,6 +61,12 @@ const replaceConfigToTemplate = async (config: IConfig) => {
     .replace(/{{backendApi}}/g, config.backendApi)
     .replace(/{{port}}/g, config.port);
   await fs.writeFile(envPath, newEnv, { encoding: "utf-8" });
+
+  // 追加 .env 到 .gitignore
+  const gitignorePath = covertPath(projectName, ".gitignore");
+  const rawGitignore = await fs.readFile(gitignorePath, "utf-8");
+  const newGitignore = rawGitignore + "\n.env";
+  await fs.writeFile(gitignorePath, newGitignore, { encoding: "utf-8" });
 };
 
 async function removeGitGithub(dirPath: string) {
