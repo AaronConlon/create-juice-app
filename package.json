@@ -10,7 +10,9 @@
     "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
     "lint": "npm run lint:js && npm run lint:prettier",
-    "lintfix": "prettier --write --list-different . && npm run lint:js --fix"
+    "lintfix": "prettier --write --list-different . && npm run lint:js --fix",
+    "prepare": "husky install",
+    "test": "echo ..."
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
@@ -20,6 +22,7 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
     "nuxt": "^3.5.1",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
