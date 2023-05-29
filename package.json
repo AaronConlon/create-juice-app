@@ -15,6 +15,8 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@nuxt/test-utils": "^3.5.2",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@types/node": "^18",

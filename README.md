@@ -29,6 +29,35 @@ pnpm install
 npm run dev
 ```
 
+
+
+## 代码提交
+
+在代码提交之前，我们会执行测试和`git commit`检查的钩子，只有通过了代码测试和`prettier`+`eslint`的检查和格式化才能提交代码。这样就能让代码在团队协作的时候保持较好的一致性。
+
+这里介绍一下代码提交规范。
+
+以下是提交的`commit`的格式：
+
+```bash
+type(scope?): subject  #scope is optional; multiple scopes are supported (current delimiter options: "/", "\" and ",")
+```
+
+只要按照这个格式来写`commit`信息，就很容易确保团队协作的提交信息格式一致，并且具有一定的可读性。举个例子：
+
+```bash
+# 运行测试
+chore: run tests on travis ci
+# 修复服务端跨域问题的 bug
+fix(server): send cors headers
+# 新增首页评论
+feat(homepage): add comment section
+```
+
+如果你喜欢，还可以加上具有代表性的`emoji`图标，在这里找[gitmoji | An emoji guide for your commit messages  gitmoji.dev https://gitmoji.dev](https://gitmoji.dev/)
+
+
+
 ## 产品发布
 
 执行构建命令即可构建项目：
