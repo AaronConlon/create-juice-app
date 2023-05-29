@@ -6,13 +6,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  css: ["~/assets/css/tailwind.css"],
-  modules: ["nuxt-icon", "@pinia/nuxt"],
+  css: ['~/assets/css/tailwind.css'],
+  modules: ['nuxt-icon', '@pinia/nuxt'],
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
-      "defineStore", // import { defineStore } from 'pinia'
-      ["defineStore", "definePiniaStore"], // import { defineStore as definePiniaStore } from 'pinia'
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
 });

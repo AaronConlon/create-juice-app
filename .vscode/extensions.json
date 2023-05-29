@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "formulahendry.auto-close-tag",
+    "webben.browserslist",
+    "bierner.color-info",
+    "kamikillerto.vscode-colorize",
+    "dbaeumer.vscode-eslint",
+    "mkxml.vscode-filesize",
+    "eamodio.gitlens",
+    "wix.vscode-import-cost",
+    "esbenp.prettier-vscode",
+    "syler.sass-indented",
+    "vscode-icons-team.vscode-icons"
+  ]
+}

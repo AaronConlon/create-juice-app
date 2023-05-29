@@ -16,9 +16,9 @@
       </span>
     </button>
     <div
-      class="text-left max-w-[600px] w-full px-4 py-2 border border-gray-300 rounded-md shadow-md"
       v-for="{ id, title, body } in data"
       :key="id"
+      class="text-left max-w-[600px] w-full px-4 py-2 border border-gray-300 rounded-md shadow-md"
     >
       <h2 class="text-xl font-bold">{{ title }}</h2>
       <p class="text-gray-500">{{ body }}</p>
@@ -27,19 +27,17 @@
 </template>
 
 <script setup lang="ts">
-import { globalStore, useGlobalStore } from "~/stores/global";
+import { useQuery } from '@tanstack/vue-query';
+import { globalStore, useGlobalStore } from '~/stores/global';
+import { commonApi } from '~/services/common';
 
 const { count } = useGlobalStore();
 const { increment } = globalStore();
 
-import { useQuery } from "@tanstack/vue-query";
-import { commonApi } from "~/services/common";
-
 const { data, suspense } = useQuery({
-  queryKey: ["demo"],
+  queryKey: ['demo'],
   queryFn: () => commonApi.getDemoData(),
 });
 
 await suspense();
-console.log(data);
 </script>

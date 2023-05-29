@@ -1,10 +1,10 @@
-import { getToken } from "./clientUtils";
+import { getToken } from './clientUtils';
 
 export const request = (url: string, options: RequestInit) => {
   return fetch(url, options)
     .then((response) => {
       if (response.status === 401) {
-        throw new Error("Unauthorized");
+        throw new Error('Unauthorized');
       }
       return response.json();
     })
@@ -16,23 +16,23 @@ export const request = (url: string, options: RequestInit) => {
 export const API = {
   post: <T>(url: string, body = {}, options?: RequestInit) => {
     return request(url, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${getToken()}`,
       },
-      credentials: "include",
+      credentials: 'include',
       ...options,
       body: JSON.stringify(body),
     }) as Promise<T>;
   },
   get: <T>(url: string, options?: RequestInit) => {
     return request(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
-      credentials: "include",
+      credentials: 'include',
       ...options,
     }) as Promise<T>;
   },

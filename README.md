@@ -1,6 +1,7 @@
 # {{projectName}}
 
 ## 项目概述
+
 {{description}}
 
 官方文档 [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction)
@@ -51,7 +52,5 @@ npm run preview
 - [Vue Query | TanStack Query Docs](https://tanstack.com/query/v4/docs/react/adapters/vue-query)
 - [Pinia | The intuitive store for Vue.js](https://pinia.vuejs.org/)
 - ...
-
-
 
 待续
