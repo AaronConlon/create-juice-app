@@ -1,54 +1,23 @@
 {
-  "name": "Juice-scaffold",
+  "name": "create-funny-app",
   "version": "1.0.0",
-  "description": "An interesting front-end scaffold",
-  "main": "dist/index.js",
-  "type": "module",
-  "module": "dist/index.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "npx tsup --watch",
-    "dev:watch": "npx tsup --watch --onSuccess 'node dist/index.js'",
-    "build": "npx tsup",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "create-juice-app": "./dist/esm/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Developer27149/create-funny-app.git"
   },
-  "keywords": [
-    "CLI",
-    "Frontend scaffold"
-  ],
-  "author": "Developer27149",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Developer27149/create-funny-app/issues"
   },
   "homepage": "https://github.com/Developer27149/create-funny-app#readme",
-  "devDependencies": {
-    "@types/ascii-art": "^1.4.0",
-    "@types/chalk": "^2.2.0",
-    "@types/chalk-animation": "^1.6.1",
-    "@types/figlet": "^1.5.6",
-    "@types/gradient-string": "^1.1.2",
-    "@types/inquirer": "^9.0.3",
-    "@types/node": "^20.2.5",
-    "@types/node-fetch": "^2.6.4",
-    "tsup": "^6.7.0",
-    "typescript": "^5.0.4"
-  },
   "dependencies": {
-    "chalk": "^5.2.0",
-    "chalk-animation": "^2.0.3",
-    "commander": "^10.0.1",
-    "download-git-repo": "^3.0.2",
-    "figlet": "^1.6.0",
-    "gradient-string": "^2.0.2",
-    "inquirer": "^9.2.6",
-    "nanospinner": "^1.1.0",
-    "node-fetch": "^3.3.1"
+    "lodash-es": "^4.17.21"
   }
 }
