@@ -1,5 +1,5 @@
 {
-  "name": "Juice-scaffold",
+  "name": "create-juice-app",
   "version": "1.0.0",
   "description": "An interesting front-end scaffold",
   "main": "dist/index.js",
