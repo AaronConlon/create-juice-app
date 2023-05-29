@@ -19,10 +19,8 @@ const downloadTemplate = async (templateName: string, projectName: string) => {
     const url = `direct:https://github.com/${githubName}/${repo}#${templateName}`;
     const targetDir = getDownloadTemplateDir(projectName);
     // @ts-ignore
-    console.log("targetDir", targetDir, globalThis?._sameDir_);
     download(url, targetDir, { clone: true }, (err: string) => {
       if (err) {
-        console.log(err);
         showErrorMessage("下载模板失败，请检查网络是否正常");
         process.exit(1);
       }
@@ -106,7 +104,6 @@ const installDependencies = async (config: IConfig, onSuccess: () => void) => {
       { cwd: getExecPackageInstallPath(projectName) },
       (err: any) => {
         if (err) {
-          console.log(err);
           showErrorMessage("安装依赖失败，请检查网络是否正常");
           process.exit(1);
         }
@@ -119,7 +116,6 @@ const installDependencies = async (config: IConfig, onSuccess: () => void) => {
 
 export const generateProject = async (config: IConfig): Promise<any> => {
   const { template, projectName } = config;
-  console.log("projectName", projectName);
   let spinner = createSpinner("拉取文件...").start();
   // 下载模板
   await downloadTemplate(template, projectName);
