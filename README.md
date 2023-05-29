@@ -1,13 +1,13 @@
 # {{projectName}}
 
-## Description
+## 项目概述
 {{description}}
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+官方文档 [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction)
 
-## Setup
+## 初始化
 
-Make sure to install the dependencies:
+确保你已经安装了依赖
 
 ```bash
 # yarn
@@ -20,26 +20,38 @@ npm install
 pnpm install
 ```
 
-## Development Server
+## 开发
 
-Start the development server on `http://localhost:3000`
+运行一下命令即可在本地打开开发服务器
 
 ```bash
 npm run dev
 ```
 
-## Production
+## 产品发布
 
-Build the application for production:
+执行构建命令即可构建项目：
 
 ```bash
 npm run build
 ```
 
-Locally preview production build:
+构建完成后支持本地预览：
 
 ```bash
 npm run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 项目依赖
+
+本项目内置了一些好用的第三方库，非常推荐给大家使用：
+
+- [Icon Module · Nuxt](https://nuxt.com/modules/icon)：可以去[Icônes](https://icones.js.org/)搜索你需要的图标
+- [Tailwind UI - Official Tailwind CSS Components & Templates](https://tailwindui.com/)
+- [Vue Query | TanStack Query Docs](https://tanstack.com/query/v4/docs/react/adapters/vue-query)
+- [Pinia | The intuitive store for Vue.js](https://pinia.vuejs.org/)
+- ...
+
+
+
+待续
