@@ -1,7 +1,10 @@
 {
-  "name": "create-juice-app",
+  "name": "@Developer27149/create-juice-app",
   "version": "1.0.0",
   "description": "An interesting front-end scaffold",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "main": "dist/index.js",
   "type": "module",
   "module": "dist/index.js",
