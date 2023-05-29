@@ -1,5 +1,5 @@
 {
-  "name": "@Developer27149/create-juice-app",
+  "name": "create-juice-app",
   "version": "1.0.0",
   "description": "An interesting front-end scaffold",
   "publishConfig": {
