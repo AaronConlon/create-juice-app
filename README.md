@@ -13,3 +13,6 @@ npm start
 
 如果你在通过`npm i -g create-juice-app`命令在全局安装了`create-juice-app`，我们推荐你使用`npm uninstall -g create-juice-app`卸载掉全局命令，使用`npx`可以确保使用的命令处于最新的版本。
 
+你可以快速创建一个前端项目：
+
+![](./img/1.gif)
