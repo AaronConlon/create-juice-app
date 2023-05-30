@@ -4,6 +4,8 @@
 
 `Create-juice-app`可以在`macOS`、`Linux`、`Windows`上运行，如果你在使用的时候遇到了任何问题，欢迎给我们提`issue`，如果你想要提问，也可以联系我们或者在`Github Discussions`上留言。
 
+![image-20230530142509655](./img/0.png)
+
 ### 快速开始
 
 ```bash
