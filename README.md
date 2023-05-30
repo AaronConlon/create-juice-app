@@ -52,6 +52,19 @@ npm start
 
 ![](./img/juice.png)
 
+### 开发计划
+
+- [ ] React 模板
+- [ ] PWA 模板
+- [ ] Chrome Extension 插件开发模板
+- [ ] Next.JS Fullstack 模板
+- [ ] Node CLI
+- [ ] Electron
+- [ ] Vue3 Admin System
+- [ ] ...
+
+
+
 ### 参与开发
 
 非常期待大家参与构建模板系统，你只需要创建一个新的分支即可。分支名就是你的模板名称。
