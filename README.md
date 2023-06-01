@@ -46,6 +46,8 @@ npm start
   - `eslint+prettier+commitlint+husky`
   - Test
 
+- chrome extension 模板
+
 - React: 暂未完成
 
 #### Juice
@@ -54,11 +56,18 @@ npm start
 
 ![](./img/juice.png)
 
+#### Chrome extension 模板
+
+目前发布了一个简单的百度翻译插件模板，预览如下：
+
+![image-20230601230317211](./img/chrome-extension.png)
+
 ### 开发计划
 
+- [x] Juice: Nuxt3 模板
 - [ ] React 模板
 - [ ] PWA 模板
-- [ ] Chrome Extension 插件开发模板
+- [x] Chrome Extension 插件开发模板
 - [ ] Next.JS Fullstack 模板
 - [ ] Node CLI
 - [ ] Electron
