@@ -1,87 +1,18 @@
-# create-juice-app
+# Vue 3 + TypeScript + Vite
 
-> 一个有趣的前端脚手架
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-`Create-juice-app`可以在`macOS`、`Linux`、`Windows`上运行，如果你在使用的时候遇到了任何问题，欢迎给我们提`issue`，如果你想要提问，也可以联系我们或者在`Github Discussions`上留言。
+## Recommended IDE Setup
 
-![image-20230530142509655](./img/0.png)
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-### 快速开始
+## Type Support For `.vue` Imports in TS
 
-```bash
-npx create-juice-app my-app
-cd my-app
-npm start
-```
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-如果你在通过`npm i -g create-juice-app`命令在全局安装了`create-juice-app`，我们推荐你使用`npm uninstall -g create-juice-app`卸载掉全局命令，使用`npx`可以确保使用的命令处于最新的版本。
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-你可以快速创建一个前端项目（这里我已经在本地全局安装了这个命令，如果你不想全局安装，则在命令前加上`npx`即可）：
-
-![](./img/1.gif)
-
-### 模板
-
-脚手架的原理是根据用户交互的信息，去拉取目标模板类型的样板项目代码进行初始化，我们会初始化一些通用的内容。诸如：
-
-- 项目描述
-- 开发者
-- 开发端口配置
-- 后端地址环境变量
-- 包管理工具
-  - npm
-  - yarn
-  - pnpm
-
-目前支持的模板如下：
-
-> 每一个脚手架我们都配置好一个基础的代码规范管理、格式化、插件设置、git 规范等功能
-
-- [Juice](https://github.com/Developer27149/create-juice-app/blob/juice/README.md): `Vue3`生态下的服务端渲染解决方案，基于`TypeScript`+[Nuxt3](https://nuxt.com/)技术栈
-
-  - 状态管理使用的是[Pinia | The intuitive store for Vue.js](https://pinia.vuejs.org/)
-  - API 数据管理使用的是[Vue-query](https://tanstack.com/query/v4/docs/vue/overview)
-  - 样式则使用`sass`和[Tailwind CSS](https://tailwindcss.com/)
-  - 使用`nuxt-icon`方便创建 `svg icon`
-  - `eslint+prettier+commitlint+husky`
-  - Test
-
-- chrome extension 模板
-
-- React: 暂未完成
-
-#### Juice
-
-默认模板项目图示:
-
-![](./img/juice.png)
-
-#### Chrome extension 模板
-
-目前发布了一个简单的百度翻译插件模板，预览如下：
-
-![image-20230601230317211](./img/chrome-extension.png)
-
-### 开发计划
-
-- [x] Juice: Nuxt3 模板
-- [ ] React 模板
-- [ ] PWA 模板
-- [x] Chrome Extension 插件开发模板
-- [ ] Next.JS Fullstack 模板
-- [ ] Node CLI
-- [ ] Electron
-- [ ] Vue3 Admin System
-- [ ] ...
-
-
-
-### 参与开发
-
-非常期待大家参与构建模板系统，你只需要创建一个新的分支即可。分支名就是你的模板名称。
-
-或许你也需要稍微阅读一下脚手架的源代码（如果有任何建议、欢迎留言）
-
-### License
-
-本项目使用`MIT`许可证
+1. Disable the built-in TypeScript Extension
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
