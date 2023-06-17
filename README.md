@@ -9,12 +9,10 @@
 首先,运行开发服务器:
 
 ```
-copy codepnpm dev
-# 或
 npm run dev
 ```
 
-打开浏览器访问相应的开发版本。例如,如果你正在为 Chrome 浏览器开发基于manifest v3 的插件,使用:`build/chrome-mv3-dev`。
+打开浏览器访问相应的开发版本。例如,如果你正在为 Chrome 浏览器开发基于 manifest v3 的插件,使用:`build/chrome-mv3-dev`。
 
 你可以修改 `popup.tsx` 来编辑弹出窗口。代码修改后会自动更新。要添加选项页面,只需在项目根目录添加 `options.tsx` 文件,默认导出一个 React 组件即可。同样地,要添加内容页,只需在项目根目录添加 `content.ts` 文件,导入一些模块并进行一些逻辑,然后重新加载扩展。
 
@@ -25,14 +23,10 @@ npm run dev
 运行:
 
 ```
-copy codepnpm build 
-# 或 
 npm run build
 ```
 
 这会生成你的扩展的生产版本,准备好打包和发布到商店。
-
-
 
 ## 提交到商店
 
