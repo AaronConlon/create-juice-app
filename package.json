@@ -1,8 +1,8 @@
 {
-  "name": "demo",
-  "displayName": "Demo",
+  "name": "{{projectName}}",
+  "displayName": "{{projectName}}",
   "version": "0.0.1",
-  "description": "A basic Plasmo extension.",
+  "description": "{{description}}",
   "author": "aaron",
   "scripts": {
     "dev": "plasmo dev",
