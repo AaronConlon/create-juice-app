@@ -1,87 +1,114 @@
-# create-juice-app
+# VST
 
-> 一个有趣的前端脚手架
+English / [简体中文](./README.zh-CN.md)
 
-`Create-juice-app`可以在`macOS`、`Linux`、`Windows`上运行，如果你在使用的时候遇到了任何问题，欢迎给我们提`issue`，如果你想要提问，也可以联系我们或者在`Github Discussions`上留言。
+VST (Vue Starter Template) is an opinionated `Vue 3/Vite/TypeScript/Naive UI/Tailwind CSS` starter template.
 
-![image-20230530142509655](./img/0.png)
+## Feature
 
-### 快速开始
+- [x] Based on [Vue 3](https://vuejs.org/), [Vite](https://vitejs.dev/), [pnpm](https://pnpm.io/)
+- [x] [TypeScript](https://www.typescriptlang.org/), of course
+- [x] [Naive UI](https://www.naiveui.com/) as UI framework
+- [x] [Tailwind CSS](https://tailwindcss.com/) for rapid development based on atomic CSS
+- [x] [Sass](https://sass-lang.com/) for CSS pre-processing
+- [x] [Vue Router](https://router.vuejs.org/) for routing management
+- [x] [Pinia](https://pinia.esm.dev/) for global state management
+- [x] [Axios](https://axios-http.com/) for request management
+- [x] [iconify/json] and [unplugin-icons] for icon management, can use icones quickly
+- [x] [unplugin-auto-import] and [unplugin-vue-components] for automatic import, free your hands
+- [x] [ESLint](https://eslint.org/) for code checking
+- [x] [Prettier](https://prettier.io/) for code formatting
+- [x] [cspell] for code spell checking
+- [x] [Husky](https://typicode.github.io/husky/#/) and [lint-staged] and [commitlint] for Git commit management
+- [ ] [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) for containerization
+- [x] Use `@/*` as absolute path
+- [x] Deploy on Vercel, zero config
+
+## Tech Stack
+
+- [Vue 3](https://vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Naive UI](https://www.naiveui.com/)
+- [Sass](https://sass-lang.com/)
+
+## Code Style
+
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
+## Getting Started
+
+### GitHub Template
+
+> VST requires Node version >=14.16.0
+
+[Create a repo using this template](https://github.com/recallwei/vst/generate).
+
+### Clone to local
+
+If you prefer to do it manually with a cleaner Git history then follow these steps:
 
 ```bash
-npx create-juice-app my-app
-cd my-app
-npm start
+npx degit recallwei/vst my-vst-app
+cd my-vst-app
+pnpm i
 ```
 
-如果你在通过`npm i -g create-juice-app`命令在全局安装了`create-juice-app`，我们推荐你使用`npm uninstall -g create-juice-app`卸载掉全局命令，使用`npx`可以确保使用的命令处于最新的版本。
+## Checklist
 
-你可以快速创建一个前端项目（这里我已经在本地全局安装了这个命令，如果你不想全局安装，则在命令前加上`npx`即可）：
+When using this template, try to update your own information correctly according to the checklist:
 
-![](./img/1.gif)
+- [ ] Clean up `README.md`
+- [ ] Change author name in `LICENSE`
+- [ ] Change project name, description, author, etc. in `package.json`
+- [ ] Modify environment variables in `.env` and delete the file `.env.example` which is an example of environment variables
+- [ ] Modify the site meta data in `index.html`
+- [ ] Change `favicon.ico` in the `/public` directory
+- [ ] Change the interface proxy in `vite.config.ts`
+- [ ] Change the site meta data in `src/app.config.ts`
+- [ ] Delete the example API in the `src/api` directory
+- [ ] Delete the example images in the `src/assets/images` directory
+- [ ] Delete the example route in the `src/router` directory
+- [ ] Delete the example view in the `src/views` directory
+- [ ] Delete the example store in the `src/store` directory
 
-### 模板
+## Notice
 
-脚手架的原理是根据用户交互的信息，去拉取目标模板类型的样板项目代码进行初始化，我们会初始化一些通用的内容。诸如：
+- xxx
 
-- 项目描述
-- 开发者
-- 开发端口配置
-- 后端地址环境变量
-- 包管理工具
-  - npm
-  - yarn
-  - pnpm
+## Usage
 
-目前支持的模板如下：
+### Environment
 
-> 每一个脚手架我们都配置好一个基础的代码规范管理、格式化、插件设置、git 规范等功能
+- Node.js >=16.14.0
+- pnpm
 
-- [Juice](https://github.com/Developer27149/create-juice-app/blob/juice/README.md): `Vue3`生态下的服务端渲染解决方案，基于`TypeScript`+[Nuxt3](https://nuxt.com/)技术栈
+### Config Environment Variables
 
-  - 状态管理使用的是[Pinia | The intuitive store for Vue.js](https://pinia.vuejs.org/)
-  - API 数据管理使用的是[Vue-query](https://tanstack.com/query/v4/docs/vue/overview)
-  - 样式则使用`sass`和[Tailwind CSS](https://tailwindcss.com/)
-  - 使用`nuxt-icon`方便创建 `svg icon`
-  - `eslint+prettier+commitlint+husky`
-  - Test
+Config `.env` file, refer to [.env.example](./.env.example).
 
-- chrome extension 模板
+### Install
 
-- React: 暂未完成
+```bash
+pnpm i
+```
 
-#### Juice
+### Start
 
-默认模板项目图示:
+```bash
+pnpm dev
+```
 
-![](./img/juice.png)
+### Build
 
-#### Chrome extension 模板
+```bash
+pnpm build
+```
 
-目前发布了一个简单的百度翻译插件模板，预览如下：
+## Known Issue
 
-![image-20230601230317211](./img/chrome-extension.png)
+- [ ] xxx
 
-### 开发计划
+## License
 
-- [x] Juice: Nuxt3 模板
-- [ ] React 模板
-- [ ] PWA 模板
-- [x] Chrome Extension 插件开发模板
-- [ ] Next.JS Fullstack 模板
-- [ ] Node CLI
-- [ ] Electron
-- [ ] Vue3 Admin System
-- [ ] ...
-
-
-
-### 参与开发
-
-非常期待大家参与构建模板系统，你只需要创建一个新的分支即可。分支名就是你的模板名称。
-
-或许你也需要稍微阅读一下脚手架的源代码（如果有任何建议、欢迎留言）
-
-### License
-
-本项目使用`MIT`许可证
+[MIT](/LICENSE) License &copy; 2023 [Bruce Song](https://github.com/recallwei)

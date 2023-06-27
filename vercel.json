@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api-prefix/:path*",
+      "destination": "http://localhost:3000/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}
