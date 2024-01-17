@@ -1,5 +1,5 @@
 {
-  "name": "projectName",
+  "name": "{{projectName}}",
   "displayName": "{{projectName}}",
   "version": "0.0.1",
   "description": "{{description}}",
